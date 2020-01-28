@@ -1,5 +1,6 @@
 package com.example.myott11
 
+import android.animation.AnimatorInflater
 import android.content.res.Resources
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
@@ -24,13 +25,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-     //   mainLayout.setOnClickListener {
+       mainLayout.setOnClickListener {
             CoroutineScope(Main).launch {
                 delay(1000)
                 createOtt()
                 drawAllOtts()
+                lastApizode()
             }
-   //     }
+        }
+    }
+
+    private suspend fun lastApizode() {
+        delay(100)
+        for (index in 25..29) {
+            delay(750)
+            val anim = AnimatorInflater.loadAnimator(this, R.animator.translate1)
+            anim?.apply {
+                setTarget(otts[index].iv)
+                start()
+            }
+        }
     }
 
     private suspend fun drawAllOtts() {
@@ -121,21 +135,21 @@ class MainActivity : AppCompatActivity() {
             Ott(mV("ד"), 15, scale1, scale1, 0, 0, 200 + int2, button2 + 10),
             Ott(mV("י"), 16, scale1, scale1, 0, 0, 260 + int2, button2),
 
-            Ott(mV("ש"), 11, scale1, scale1, 140, 0, 0, button3),
-            Ott(mV("מ"), 12, scale1, scale1, 70, 0, 0, button3),
-            Ott(mV("פ"), 13, scale1, scale1, 0, 0, 20, button3),
-            Ott(mV("ר"), 14, scale1, scale1, 0, 0, 100, button3),
-            Ott(mV("י"), 15, scale1, scale1, 0, 0, 150, button3 + 20),
-            Ott(mV("ע"), 16, scale1, scale1, 0, 0, 190, button3),
+            Ott(mV("ש"), 17, scale1, scale1, 140, 0, 0, button3),
+            Ott(mV("מ"), 18, scale1, scale1, 70, 0, 0, button3),
+            Ott(mV("פ"), 19, scale1, scale1, 0, 0, 20, button3),
+            Ott(mV("ר"), 20, scale1, scale1, 0, 0, 100, button3),
+            Ott(mV("י"), 21, scale1, scale1, 0, 0, 150, button3 + 20),
+            Ott(mV("ע"), 22, scale1, scale1, 0, 0, 190, button3),
 
-            Ott(mV("ל"), 11, scale1, scale1, 0, 0, 320, button3),
-            Ott(mV("י"), 12, scale1, scale1, 0, 0, 370, button3),
+            Ott(mV("ל"), 23, scale1, scale1, 0, 0, 320, button3),
+            Ott(mV("י"), 24, scale1, scale1, 0, 0, 370, button3),
 
-            Ott(mV("ל"), 11, scale2, scale2, 0, top0, 0, 0),
-            Ott(mV("ח"), 12, scale2, scale2, 0, top0 + 20, 120, 0),
-            Ott(mV("י"), 13, scale2, scale2, 0, top0, 200, 0),
-            Ott(mV("ו"), 14, scale2, scale2, 0, top0, 240, 0),
-            Ott(mV("ת"), 15, scale2, scale2, 0, top0 + 30, 335, 0)
+            Ott(mV("ל"), 25, scale2, scale2, 0, top0, 0, 0),
+            Ott(mV("ח"), 26, scale2, scale2, 0, top0 + 20, 120, 0),
+            Ott(mV("י"), 27, scale2, scale2, 0, top0, 200, 0),
+            Ott(mV("ו"), 28, scale2, scale2, 0, top0, 240, 0),
+            Ott(mV("ת"), 29, scale2, scale2, 0, top0 + 30, 335, 0)
         )
 
     }
